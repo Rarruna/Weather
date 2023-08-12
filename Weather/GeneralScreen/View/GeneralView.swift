@@ -29,6 +29,10 @@ class GeneralView: UIView {
         snapshot.appendItems(cellData, toSection: 0)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
+    
+    func reloadTableView() {
+        tableView.reloadData()
+    }
 }
 
 private extension GeneralView {
@@ -39,7 +43,7 @@ private extension GeneralView {
         tableView.register(OtherTableViewCell.self,
                            forCellReuseIdentifier: OtherTableViewCell.reuseId)
         tableView.reloadData()
-
+        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(layoutMarginsGuide)
             make.left.right.bottom.equalToSuperview()
@@ -51,23 +55,23 @@ private extension GeneralView {
         dataSource = UITableViewDiffableDataSource<Int, ByDate>(tableView: tableView, cellProvider: { (tableView, indexPath, model) -> UITableViewCell? in
             
             switch indexPath.row {
-                case 0:
-                    let cell = tableView.dequeueReusableCell(
-                        withIdentifier: FirstTableViewCell.reuseId,
-                        for: indexPath) as! FirstTableViewCell
-                    tableView.rowHeight = heightForTodayCell
-                    cell.configure(with: model)
+            case 0:
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: FirstTableViewCell.reuseId,
+                    for: indexPath) as! FirstTableViewCell
+                tableView.rowHeight = heightForTodayCell
+                cell.configure(with: model)
                 
-                    return cell
+                return cell
                 
-                default:
-                    let cell = tableView.dequeueReusableCell(
-                        withIdentifier: OtherTableViewCell.reuseId,
-                        for: indexPath) as! OtherTableViewCell
-                    tableView.rowHeight = heightForHourCell
-                    cell.configure(with: model)
+            default:
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: OtherTableViewCell.reuseId,
+                    for: indexPath) as! OtherTableViewCell
+                tableView.rowHeight = heightForHourCell
+                cell.configure(with: model)
                 
-                    return cell
+                return cell
             }
         })
     }

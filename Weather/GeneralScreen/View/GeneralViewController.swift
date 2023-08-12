@@ -31,7 +31,6 @@ class GeneralViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.getWeather(city: nil)
-        hideSearchButton(isHidden: false)
         view.setNeedsDisplay()
     }
     
@@ -93,6 +92,7 @@ private extension GeneralViewController {
         searchPopUpViewController.searchCityCompletion = { [weak self] city in
             self?.presenter.getWeather(city: city)
             self?.hideSearchButton(isHidden: false)
+            self?.generalView.reloadTableView()
         }
         searchPopUpViewController.closeAlertCompletion = { [weak self] in
             self?.hideSearchButton(isHidden: false)
