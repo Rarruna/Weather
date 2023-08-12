@@ -11,10 +11,6 @@ class FirstTableViewCell: UITableViewCell {
     private let temperatureLabel = UILabel()
     private let descriptionLabel = UILabel()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         setupView()
@@ -27,6 +23,7 @@ class FirstTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         dateLabel.text = ""
         temperatureLabel.text = ""
         descriptionLabel.text = ""

@@ -13,11 +13,8 @@ class OtherTableViewCell: UITableViewCell {
     private let weatherIcon = UIImageView()
     private let separatorView = UIView()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override func prepareForReuse() {
+        super.prepareForReuse()
         dateLabel.text = ""
         weekdayLabel.text = ""
         maxTempLabel.text = ""
