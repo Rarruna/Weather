@@ -10,14 +10,14 @@ class FirstTableViewCell: UITableViewCell {
     private let weatherIcon = UIImageView()
     private let temperatureLabel = UILabel()
     private let descriptionLabel = UILabel()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        setupView()
     }
     
     override func layoutSubviews() {
@@ -27,7 +27,6 @@ class FirstTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        super.prepareForReuse()
         dateLabel.text = ""
         temperatureLabel.text = ""
         descriptionLabel.text = ""

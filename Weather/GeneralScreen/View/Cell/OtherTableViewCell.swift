@@ -13,23 +13,22 @@ class OtherTableViewCell: UITableViewCell {
     private let weatherIcon = UIImageView()
     private let separatorView = UIView()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     override func prepareForReuse() {
-        super.prepareForReuse()
         dateLabel.text = ""
         weekdayLabel.text = ""
         maxTempLabel.text = ""
         minTempLabel.text = ""
         weatherIcon.image = nil
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        selectionStyle = .none
+        setupView()
     }
     
     func configure(with cell: ByDate) {
